@@ -1,0 +1,2272 @@
+<!--
+==============================================================================
+Website: Dr. Mahule Gastro, Liver and Infertility Centre
+Version: 2.0 (April 2025)
+Client: Rani Avantibai Multispeciality Hospital
+Developer: Tarang lilhare
+==============================================================================
+
+WEBSITE INFORMATION:
+-------------------
+- Institution: A unit of Rani Avantibai Multispeciality Hospital established on October 31st, 2020
+- Registration: NRH-39
+- Capacity: 20-bed facility
+- Core Specialties: Gastroenterology, Hepatology, Obstetrics, Gynecology, Infertility Treatment
+- Lead Doctors: Dr. Raju Mahule (Gastroenterologist), Dr. Khushbu Upwanshi (Gynecologist), 
+  Dr. Swetal Maskare (Hepatologist), Dr. Sanjay Mahule (Senior Consultant)
+- Address: At Bopche Sadan (Chawl Groundfloor), same building of Union Bank of India,
+  Gondia - Balaghat Rd, opposite Kesar restaurant, Gondia, Maharashtra 441614
+- Contact: 089991 98078
+- Email: info@raniavantibaihospital.com
+
+FEATURES IMPLEMENTED:
+-------------------
+1. Modern responsive design with clean UI
+2. Parallax and smooth scrolling effects
+3. AOS (Animate On Scroll) library integration
+4. Custom animations and transitions
+5. Improved navigation and mobile menu
+6. Enhanced appointment booking system
+7. Optimized for better user experience
+8. Emergency call button with floating action
+9. Interactive sections with hover effects
+10. Testimonial carousel
+==============================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Mahule Gastro, Liver and Infertility Centre</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.css">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-light: #4285f4;
+      --primary-dark: #0d47a1;
+      --secondary: #34a853;
+      --accent: #ea4335;
+      --light: #f8f9fa;
+      --dark: #202124;
+      --text: #3c4043;
+      --text-light: #5f6368;
+      --bg-light: #f8f9fc;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 5px 15px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --radius: 8px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Google Sans', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+    
+    body {
+      color: var(--text);
+      background-color: var(--bg-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    section {
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      gap: 8px;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+    }
+
+    .btn i {
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-secondary {
+      background-color: var(--secondary);
+    }
+    
+    .btn-secondary:hover {
+      background-color: #2d8f48;
+    }
+    
+    .btn-accent {
+      background-color: var(--accent);
+    }
+    
+    .btn-accent:hover {
+      background-color: #d3372a;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Progress Indicator */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      z-index: 2000;
+      width: 100%;
+      height: 4px;
+      background: transparent;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: var(--primary);
+      width: 0%;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-sm);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: var(--transition);
+    }
+    
+    header.scrolled {
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(10px);
+    }
+
+    .header-top {
+      background-color: var(--primary);
+      color: white;
+      padding: 8px 0;
+      font-size: 14px;
+      transition: var(--transition);
+    }
+
+    .header-top .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-info a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .social-links a {
+      color: white;
+      margin-left: 12px;
+      text-decoration: none;
+      opacity: 0.9;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+    }
+
+    .header-main {
+      padding: 15px 0;
+      transition: var(--transition);
+    }
+
+    .header-main .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 12px;
+      transition: var(--transition);
+    }
+
+    .logo-text h1 {
+      font-size: 20px;
+      color: var(--primary);
+      line-height: 1.2;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .logo-text p {
+      font-size: 12px;
+      color: var(--text-light);
+      line-height: 1.2;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-menu li {
+      position: relative;
+    }
+
+    .nav-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 10px 15px;
+      border-radius: var(--radius);
+      font-size: 15px;
+      display: inline-block;
+    }
+
+    .nav-menu a:hover, .nav-menu a.active {
+      color: var(--primary);
+      background-color: rgba(26, 115, 232, 0.08);
+    }
+
+    .nav-menu a.active::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 24px;
+      z-index: 1001;
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hamburger:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://cdn.pixabay.com/photo/2016/11/14/03/05/surgery-1822458_1280.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 40px;
+    }
+    
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      color: white;
+      font-size: 14px;
+      animation: bounce 2s infinite;
+    }
+    
+    .hero-scroll i {
+      font-size: 24px;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-20px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+    }
+
+    /* Section Styles */
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .section-subtitle {
+      color: var(--primary);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 3px;
+      background-color: var(--primary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--text-light);
+    }
+
+    /* About Section */
+    .about {
+      position: relative;
+    }
+    
+    .about::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 300px;
+      background-color: var(--bg-light);
+      clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+      z-index: -1;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background-color: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      height: 100%;
+      position: relative;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .feature-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .feature-content {
+      padding: 25px;
+    }
+
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .feature-card h3::after {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: var(--secondary);
+      bottom: -5px;
+      left: 0;
+    }
+
+    .feature-card p {
+      margin-bottom: 20px;
+      color: var(--text-light);
+    }
+
+    /* Departments Section */
+    .departments {
+      background-color: var(--bg-light);
+      position: relative;
+    }
+    
+    .departments::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 150px;
+      background-color: white;
+      clip-path: polygon(0 80%, 100% 0, 100% 100%, 0% 100%);
+      z-index: 1;
+    }
+
+    .departments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .department-card {
+      background-color: white;
+      padding: 30px 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      height: 100%;
+    }
+    
+    .department-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary);
+      z-index: -1;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .department-card:hover::before {
+      transform: translateY(0);
+    }
+
+    .department-card i {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: var(--primary);
+      transition: var(--transition);
+      display: inline-block;
+    }
+
+    .department-card:hover i {
+      color: white;
+      transform: rotateY(360deg);
+      transition: transform 0.7s ease, color 0.3s ease;
+    }
+
+    .department-card h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      transition: var(--transition);
+    }
+    
+    .department-card p {
+      transition: var(--transition);
+    }
+    
+    .department-card:hover h3, .department-card:hover p {
+      color: white;
+    }
+
+    /* Services Section */
+    .services {
+      background-color: white;
+      position: relative;
+    }
+    
+    .service-wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .service-wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 150px;
+    }
+
+    .service-wave .shape-fill {
+      fill: #F8F9FC;
+    }
+
+    /* Doctors Section */
+    .doctors {
+      background-color: white;
+      position: relative;
+    }
+    
+    .doctors-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+    }
+
+    .doctors-wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 150px;
+      transform: rotateY(180deg);
+    }
+
+    .doctors-wave .shape-fill {
+      fill: #F8F9FC;
+    }
+
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .doctor-card {
+      background-color: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+    }
+
+    .doctor-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .doctor-img-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .doctor-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+    
+    .doctor-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .doctor-info {
+      padding: 25px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .doctor-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .doctor-info h3 {
+      font-size: 22px;
+      margin-bottom: 5px;
+      color: var(--dark);
+    }
+
+    .doctor-info p {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+
+    .doctor-social {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .doctor-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background-color: #f5f7fa;
+      color: var(--primary);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .doctor-social a:hover {
+      background-color: var(--primary);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--bg-light);
+      position: relative;
+    }
+
+    .swiper-container {
+      width: 100%;
+      padding-bottom: 50px;
+    }
+
+    .testimonial-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: var(--transition);
+      height: 100%;
+    }
+    
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+      border: 3px solid var(--primary);
+    }
+    
+    .testimonial-quote {
+      font-size: 30px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      opacity: 0.3;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-card h4 {
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      opacity: 0.5;
+    }
+    
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+      background: var(--primary);
+    }
+
+    /* Counter Section */
+    .counter-section {
+      padding: 80px 0;
+      background-image: linear-gradient(rgba(26, 115, 232, 0.9), rgba(26, 115, 232, 0.9)), url('/api/placeholder/1920/1080');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+    }
+    
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    
+    .counter-item {
+      padding: 20px;
+    }
+    
+    .counter-item i {
+      font-size: 40px;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    .counter-number {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+    
+    .counter-text {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 0;
+      background-color: white;
+      position: relative;
+    }
+
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+    }
+
+    .contact-info {
+      background-color: var(--primary);
+      color: white;
+      padding: 40px;
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-info::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 200px;
+      height: 200px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+    }
+
+    .contact-info h3 {
+      margin-bottom: 30px;
+      font-size: 28px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .contact-info h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: white;
+    }
+
+    .contact-item {
+      display: flex;
+      margin-bottom: 25px;
+    }
+
+    .contact-item i {
+      font-size: 24px;
+      margin-right: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 5px;
+    }
+
+    .contact-item-content h4 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+    
+    .contact-item-content p, .contact-item-content a {
+      color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .contact-item-content a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      padding: 40px;
+      background-color: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+    }
+
+    .contact-form h3 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .contact-form h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #e0e0e0;
+      border-radius: var(--radius);
+      font-size: 16px;
+      transition: var(--transition);
+      background-color: #f9f9f9;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+      outline: none;
+      background-color: white;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    /* Appointment Section */
+    .appointment {
+      padding: 100px 0;
+      background-color: var(--bg-light);
+      position: relative;
+    }
+    
+    .appointment-wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .appointment-wave svg {
+      position: relative;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 150px;
+    }
+
+    .appointment-wave .shape-fill {
+      fill: #FFFFFF;
+    }
+
+    .appointment-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+
+    .appointment-form {
+      padding: 40px;
+      background-color: white;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      z-index: 10;
+    }
+
+    .appointment-form h3 {
+      margin-bottom: 25px;
+      font-size: 28px;
+      color: var(--dark);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .appointment-form h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+
+    .appointment-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .appointment-image img {
+      max-width: 100%;
+      border-radius: var(--radius);
+      /* box-shadow: var(--shadow-md); */
+      transition: var(--transition);
+    }
+    
+    .appointment-image:hover img {
+      transform: scale(1.02);
+      /* box-shadow: var(--shadow-lg); */
+    }
+    
+    .appointment-image::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: rgba(52, 168, 83, 0.1);
+      z-index: -1;
+      bottom: -20px;
+      right: -20px;
+    }
+
+    /* Map Section */
+    .map {
+      line-height: 0;
+    }
+    
+    .map iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+    }
+
+    /* FAQ Section */
+    .faq {
+      background-color: white;
+      padding: 100px 0;
+    }
+    
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 20px;
+    }
+    
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+    
+    .faq-item h4 {
+      font-size: 18px;
+      color: var(--dark);
+      margin-bottom: 12px;
+      position: relative;
+      cursor: pointer;
+      padding-left: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .faq-item h4 i {
+      color: var(--primary);
+      transition: var(--transition);
+    }
+    
+    .faq-item h4.active i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-content {
+      padding-left: 25px;
+      display: none;
+    }
+    
+    .faq-content.active {
+      display: block;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      position: relative;
+    }
+    
+    .footer-top {
+      padding: 80px 0 50px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-widget h3 {
+      margin-bottom: 25px;
+      font-size: 22px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .footer-widget h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .footer-widget p {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+    
+    .footer-links a i {
+      color: var(--primary);
+      font-size: 12px;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .footer-social a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .footer-social a:hover {
+      background-color: var(--primary);
+      transform: translateY(-5px);
+    }
+    
+    .footer-bottom {
+      padding: 20px 0;
+      background-color: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 14px;
+    }
+    
+    .footer-bottom a {
+      color: var(--primary-light);
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-5px);
+    }
+    
+    /* Emergency Call Button */
+    .emergency-call {
+      position: fixed;
+      bottom: 30px;
+      left: 10px;
+      background-color: var(--accent);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 500;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 999;
+      transition: var(--transition);
+    }
+    
+    .emergency-call:hover {
+      background-color: #d3372a;
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .emergency-call i {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 95%;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      section {
+        padding: 80px 0;
+      }
+      
+      .hero h1 {
+        font-size: 48px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .section-title h2 {
+        font-size: 36px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .header-top .container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 280px;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 100px 20px 20px;
+        box-shadow: var(--shadow-lg);
+        transition: 0.4s;
+        z-index: 10001;
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .nav-menu li {
+        width: 100%;
+      }
+      
+      .nav-menu a {
+        width: 100%;
+        padding: 12px 15px;
+      }
+      
+      .hero h1 {
+        font-size: 40px;
+      }
+      
+      .hero p {
+        font-size: 16px;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+      }
+      
+      .section-title h2 {
+        font-size: 32px;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-content {
+        padding-top: 100px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .logo-text h1 {
+        font-size: 18px;
+      }
+      
+      .logo img {
+        height: 40px;
+      }
+      
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .section-title h2 {
+        font-size: 28px;
+      }
+      
+      .counter-number {
+        font-size: 36px;
+      }
+      
+      .counter-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Progress Indicator -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-top">
+      <div class="container">
+        <div class="contact-info-top">
+          <a href="tel:8999198078"><i class="fas fa-phone-alt"></i> 089991 98078</a>
+          <a href="mailto:info@raniavantibaihospital.com"><i class="fas fa-envelope"></i> info@raniavantibaihospital.com</a>
+        </div>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="header-main">
+      <div class="container">
+        <div class="logo">
+          <img src="/api/placeholder/150/150" alt="">
+          <div class="logo-text">
+            <h1>Dr. Mahule Gastro Center</h1>
+            <p>Liver and Infertility Centre</p>
+          </div>
+        </div>
+        <nav>
+          <button class="hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#departments">Departments</a></li>
+            <li><a href="#doctors">Doctors</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#appointment">Appointment</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 data-aos="fade-up">Your Health Is Our Priority</h1>
+      <p data-aos="fade-up" data-aos-delay="200">Expert gastroenterology, hepatology, and infertility care at Dr. Mahule Gastro, Liver and Infertility Centre - a unit of Rani Avantibai Multispeciality Hospital.</p>
+      <div class="hero-buttons">
+        <a href="#appointment" class="btn btn-primary" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-calendar-check"></i> Book Appointment</a>
+        <a href="#contact" class="btn btn-secondary" data-aos="fade-up" data-aos-delay="600"><i class="fas fa-phone-alt"></i> Contact Us</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <i class="fas fa-chevron-down"></i>
+      <span>Scroll Down</span>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Who We Are</span>
+        <h2>About Our Hospital</h2>
+        <p>Established on October 31st, 2020, Dr. Mahule Gastro, Liver and Infertility Centre is a 20-bed specialized healthcare facility offering comprehensive treatment in gastroenterology, hepatology, obstetrics, gynecology, and infertility care.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up">
+          <img src="/api/placeholder/600/400" alt="State-of-art Equipment">
+          <div class="feature-content">
+            <h3>State-of-art Equipment</h3>
+            <p>Our facility is equipped with the latest medical technology to ensure accurate diagnoses and effective treatments for all patients.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="/api/placeholder/600/400" alt="Expert Specialists">
+          <div class="feature-content">
+            <h3>Expert Specialists</h3>
+            <p>Our team consists of highly qualified and experienced specialists dedicated to providing the best care for your health needs.</p>
+            <a href="#" class="btn btn-outline">Meet Our Team</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="/api/placeholder/600/400" alt="Personalized Care">
+          <div class="feature-content">
+            <h3>Personalized Care</h3>
+            <p>We believe in a patient-centered approach, tailoring our treatments to meet the unique needs of each individual under our care.</p>
+            <a href="#" class="btn btn-outline">Our Approach</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Departments Section -->
+  <section class="departments" id="departments">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Our Specialties</span>
+        <h2>Medical Departments</h2>
+        <p>We offer specialized care across several key medical departments to address a wide range of health conditions.</p>
+      </div>
+      
+      <div class="departments-grid">
+        <div class="department-card" data-aos="fade-up">
+          <i class="fas fa-stomach"></i>
+          <h3>Gastroenterology</h3>
+          <p>Comprehensive diagnosis and treatment for disorders affecting the digestive system.</p>
+        </div>
+        
+        <div class="department-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fas fa-lungs"></i>
+          <h3>Hepatology</h3>
+          <p>Specialized care for liver diseases and related conditions.</p>
+        </div>
+        
+        <div class="department-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-baby"></i>
+          <h3>Obstetrics</h3>
+          <p>Complete prenatal, delivery, and postnatal care for mothers and newborns.</p>
+        </div>
+        
+        <div class="department-card" data-aos="fade-up" data-aos-delay="300">
+          <i class="fas fa-venus"></i>
+          <h3>Gynecology</h3>
+          <p>Expert care for women's reproductive health at every stage of life.</p>
+        </div>
+        
+        <div class="department-card" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-dna"></i>
+          <h3>Infertility Treatment</h3>
+          <p>Advanced reproductive technologies and treatments for couples having difficulty conceiving.</p>
+        </div>
+        
+        <div class="department-card" data-aos="fade-up" data-aos-delay="500">
+          <i class="fas fa-heartbeat"></i>
+          <h3>General Medicine</h3>
+          <p>Comprehensive care for a wide range of medical conditions and preventive health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Doctors Section -->
+  <section class="doctors" id="doctors">
+    <div class="doctors-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+    
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Our Experts</span>
+        <h2>Meet Our Doctors</h2>
+        <p>Our team of highly qualified medical professionals is dedicated to providing exceptional healthcare services.</p>
+      </div>
+      
+      <div class="doctors-grid">
+        <div class="doctor-card" data-aos="fade-up">
+          <div class="doctor-img-container">
+            <img src="/api/placeholder/600/800" alt="Dr. Raju Mahule">
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Raju Mahule</h3>
+            <p>Gastroenterologist</p>
+            <div class="doctor-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="doctor-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="doctor-img-container">
+            <img src="/api/placeholder/600/800" alt="Dr. Khushbu Upwanshi">
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Khushbu Upwanshi</h3>
+            <p>Gynecologist</p>
+            <div class="doctor-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="doctor-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="doctor-img-container">
+            <img src="/api/placeholder/600/800" alt="Dr. Swetal Maskare">
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Swetal Maskare</h3>
+            <p>Hepatologist</p>
+            <div class="doctor-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="doctor-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="doctor-img-container">
+            <img src="/api/placeholder/600/800" alt="Dr. Sanjay Mahule">
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Sanjay Mahule</h3>
+            <p>Senior Consultant</p>
+            <div class="doctor-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <div class="service-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+    
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">What We Offer</span>
+        <h2>Our Medical Services</h2>
+        <p>We provide a wide range of medical services to ensure comprehensive care for all our patients.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card" data-aos="fade-up">
+          <img src="/api/placeholder/600/400" alt="Gastroscopy">
+          <div class="feature-content">
+            <h3>Gastroscopy</h3>
+            <p>Advanced diagnostic procedure to examine the upper digestive tract including the esophagus, stomach, and duodenum.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <img src="/api/placeholder/600/400" alt="Liver Treatment">
+          <div class="feature-content">
+            <h3>Liver Treatment</h3>
+            <p>Comprehensive care for various liver conditions including hepatitis, cirrhosis, and fatty liver disease.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <img src="/api/placeholder/600/400" alt="IVF Treatment">
+          <div class="feature-content">
+            <h3>IVF Treatment</h3>
+            <p>Advanced reproductive technology to help couples experiencing fertility challenges to conceive.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+          <img src="/api/placeholder/600/400" alt="Gynecological Care">
+          <div class="feature-content">
+            <h3>Gynecological Care</h3>
+            <p>Complete healthcare services for women including regular check-ups, treatments, and surgical procedures.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="800">
+          <img src="/api/placeholder/600/400" alt="Colonoscopy">
+          <div class="feature-content">
+            <h3>Colonoscopy</h3>
+            <p>Detailed examination of the colon and rectum to detect abnormalities and prevent colorectal cancer.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+        
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="1000">
+          <img src="/api/placeholder/600/400" alt="Pregnancy Care">
+          <div class="feature-content">
+            <h3>Pregnancy Care</h3>
+            <p>Complete prenatal care services including regular check-ups, ultrasound monitoring, and delivery.</p>
+            <a href="#" class="btn btn-outline">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Patient Feedback</span>
+        <h2>What Our Patients Say</h2>
+        <p>Read what our patients have to say about their experiences at Dr. Mahule Gastro, Liver and Infertility Centre.</p>
+      </div>
+      
+      <div class="swiper-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="/api/placeholder/200/200" alt="Patient">
+              <div class="testimonial-quote">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p>I had been suffering from chronic digestive issues for years until I visited Dr. Mahule. His expertise and compassionate care have completely transformed my quality of life.</p>
+              <h4>Rahul Sharma</h4>
+              <span>Gastroenterology Patient</span>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="/api/placeholder/200/200" alt="Patient">
+              <div class="testimonial-quote">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p>After struggling with infertility for 5 years, we finally found hope at Dr. Mahule Centre. The team's support and advanced treatments helped us conceive our beautiful twins.</p>
+              <h4>Priya and Ajay Patil</h4>
+              <span>IVF Treatment Patients</span>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="/api/placeholder/200/200" alt="Patient">
+              <div class="testimonial-quote">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p>Dr. Khushbu's care during my high-risk pregnancy was exceptional. Her expertise and constant monitoring ensured that both my baby and I remained healthy throughout.</p>
+              <h4>Meena Deshmukh</h4>
+              <span>Obstetrics Patient</span>
+            </div>
+          </div>
+          
+          <div class="swiper-slide">
+            <div class="testimonial-card">
+              <img src="/api/placeholder/200/200" alt="Patient">
+              <div class="testimonial-quote">
+                <i class="fas fa-quote-left"></i>
+              </div>
+              <p>My liver treatment under Dr. Swetal has shown remarkable results. The entire staff is professional, caring, and made me feel comfortable throughout my treatment journey.</p>
+              <h4>Sunil Borkar</h4>
+              <span>Hepatology Patient</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Counter Section -->
+  <section class="counter-section">
+    <div class="container">
+      <div class="counter-grid">
+        <div class="counter-item" data-aos="fade-up">
+          <i class="fas fa-user-md"></i>
+          <div class="counter-number" data-target="15">0</div>
+          <div class="counter-text">Expert Doctors</div>
+        </div>
+        
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="200">
+          <i class="fas fa-procedures"></i>
+          <div class="counter-number" data-target="20">0</div>
+          <div class="counter-text">Hospital Beds</div>
+        </div>
+        
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-smile"></i>
+          <div class="counter-number" data-target="5000">0</div>
+          <div class="counter-text">Happy Patients</div>
+        </div>
+        
+        <div class="counter-item" data-aos="fade-up" data-aos-delay="600">
+          <i class="fas fa-calendar-check"></i>
+          <div class="counter-number" data-target="850">0</div>
+          <div class="counter-text">Successful Surgeries</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Section -->
+  <section class="appointment" id="appointment">
+    <div class="appointment-wave">
+      <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+      </svg>
+    </div>
+    
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Book Now</span>
+        <h2>Schedule an Appointment</h2>
+        <p>Schedule a consultation with our specialists and take the first step towards better health.</p>
+      </div>
+      
+      <div class="appointment-container">
+        <div class="appointment-form" data-aos="fade-right">
+          <h3>Book Your Visit</h3>
+          <form action="#" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" placeholder="Your Phone" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" id="email" placeholder="Your Email">
+              </div>
+              <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" class="form-control" id="date" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="department">Department</label>
+                <select class="form-control" id="department" required>
+                  <option value="">Select Department</option>
+                  <option value="gastroenterology">Gastroenterology</option>
+                  <option value="hepatology">Hepatology</option>
+                  <option value="obstetrics">Obstetrics</option>
+                  <option value="gynecology">Gynecology</option>
+                  <option value="infertility">Infertility Treatment</option>
+                  <option value="general">General Medicine</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="doctor">Doctor</label>
+                <select class="form-control" id="doctor">
+                  <option value="">Select Doctor (Optional)</option>
+                  <option value="dr-raju">Dr. Raju Mahule</option>
+                  <option value="dr-khushbu">Dr. Khushbu Upwanshi</option>
+                  <option value="dr-swetal">Dr. Swetal Maskare</option>
+                  <option value="dr-sanjay">Dr. Sanjay Mahule</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message (Optional)</label>
+              <textarea class="form-control" id="message" rows="4" placeholder="Describe your condition briefly"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Book Appointment</button>
+          </form>
+        </div>
+        
+        <div class="appointment-image" data-aos="fade-left">
+          <img src="https://cdn.dayschedule.com/img/solutions/doctor-scheduling-software.png" alt="Appointment">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Get In Touch</span>
+        <h2>Contact Information</h2>
+        <p>Have questions or need more information? Reach out to us using the contact details below.</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info" data-aos="fade-right">
+          <h3>Get in Touch</h3>
+          
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div class="contact-item-content">
+              <h4>Our Location</h4>
+              <p>At Bopche Sadan (Chawl Groundfloor), same building of Union Bank of India, Gondia - Balaghat Rd, opposite Kesar restaurant, Gondia, Maharashtra 441614</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-phone-alt"></i>
+            <div class="contact-item-content">
+              <h4>Phone Number</h4>
+              <p><a href="tel:8999198078">089991 98078</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div class="contact-item-content">
+              <h4>Email Address</h4>
+              <p><a href="mailto:info@raniavantibaihospital.com">info@raniavantibaihospital.com</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <i class="fas fa-clock"></i>
+            <div class="contact-item-content">
+              <h4>Working Hours</h4>
+              <p>Monday - Saturday: 9:00 AM - 8:00 PM<br>Sunday: 10:00 AM - 2:00 PM</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form" data-aos="fade-left">
+          <h3>Send a Message</h3>
+          <form action="#" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" class="form-control" id="contact-name" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Your Email</label>
+                <input type="email" class="form-control" id="contact-email" placeholder="Email Address" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <input type="text" class="form-control" id="contact-subject" placeholder="Message Subject" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="contact-message">Your Message</label>
+              <textarea class="form-control" id="contact-message" rows="5" placeholder="Type your message here..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map" id="map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.9661513402476!2d80.19453707526782!3d21.23599588126102!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2c4f3fbc0e2675%3A0x8c5a31c8d30f5fc8!2sRani%20Avantibai%20Hospital!5e0!3m2!1sen!2sin!4v1682340027141!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <span class="section-subtitle">Have Questions?</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to commonly asked questions about our hospital and services.</p>
+      </div>
+      
+      <div class="faq-list" data-aos="fade-up" data-aos-delay="200">
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> What are your working hours?</h4>
+          <div class="faq-content">
+            <p>Our hospital is open from Monday to Saturday, 9:00 AM to 8:00 PM. On Sundays, we are open from 10:00 AM to 2:00 PM for emergency cases and scheduled appointments only.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> Do I need to make an appointment before visiting?</h4>
+          <div class="faq-content">
+            <p>While we do accept walk-in patients, we strongly recommend making an appointment beforehand to avoid long waiting times and ensure that you receive the care you need promptly.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> What insurance plans do you accept?</h4>
+          <div class="faq-content">
+            <p>We accept most major insurance plans including Mediclaim, Star Health, HDFC ERGO, Bajaj Allianz, and government schemes like Ayushman Bharat. Please contact our administrative office for more specific information about your insurance coverage.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> What should I bring for my first appointment?</h4>
+          <div class="faq-content">
+            <p>For your first visit, please bring a valid ID proof, your insurance card (if applicable), any previous medical records related to your condition, a list of medications you are currently taking, and any recent test results or diagnostic reports.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> Do you offer emergency services?</h4>
+          <div class="faq-content">
+            <p>Yes, we provide emergency medical services for acute conditions related to our specialties. For life-threatening emergencies, we recommend going to the nearest full-service emergency department.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <h4><i class="fas fa-plus"></i> How can I get my test results?</h4>
+          <div class="faq-content">
+            <p>Test results are typically discussed during your follow-up appointment. However, you can also request your results by contacting our reception. For patient privacy and security, results are not provided over the phone unless pre-arranged with your doctor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-top">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-widget">
+            <h3>About Us</h3>
+            <p>Dr. Mahule Gastro, Liver and Infertility Centre is a unit of Rani Avantibai Multispeciality Hospital established on October 31st, 2020, providing specialized healthcare services in gastroenterology, hepatology, obstetrics, gynecology, and infertility treatment.</p>
+            <div class="footer-social">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          
+          <div class="footer-widget">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="#departments"><i class="fas fa-chevron-right"></i> Departments</a></li>
+              <li><a href="#doctors"><i class="fas fa-chevron-right"></i> Doctors</a></li>
+              <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+              <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-widget">
+            <h3>Our Services</h3>
+            <ul class="footer-links">
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Gastroenterology</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Hepatology</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Obstetrics</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Gynecology</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> Infertility Treatment</a></li>
+              <li><a href="#"><i class="fas fa-chevron-right"></i> General Medicine</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-widget">
+            <h3>Contact Info</h3>
+            <ul class="footer-links">
+              <li><a href="#"><i class="fas fa-map-marker-alt"></i> Bopche Sadan, Gondia-Balaghat Rd, Gondia, Maharashtra 441614</a></li>
+              <li><a href="tel:8999198078"><i class="fas fa-phone-alt"></i> 089991 98078</a></li>
+              <li><a href="mailto:info@raniavantibaihospital.com"><i class="fas fa-envelope"></i> info@raniavantibaihospital.com</a></li>
+              <li><a href="#"><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2025 Dr. Mahule Gastro, Liver and Infertility Centre. All Rights Reserved. | Designed by <a href="#">Tarang lilhare</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#header" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <!-- Emergency Call Button -->
+  <a href="tel:8999198078" class="emergency-call">
+    <i class="fas fa-phone-alt"></i> Emergency Call
+  </a>
+
+  <!-- Scripts Section -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js"></script>
+  
+
+
+  <script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/019654b07e8a7f129cc5b49afef412d575a6",
+      rootId: "JotformAgent-019654b07e8a7f129cc5b49afef412d575a6",
+      formID: "019654b07e8a7f129cc5b49afef412d575a6",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #D8C8ED 0%, #EFE7F8 100%)",
+      buttonBackgroundColor: "#0A1551",
+      buttonIconColor: "#FFF",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "Hi! How can I assist you?",
+        "openByDefault": "No",
+        "pulse": "Yes",
+        "position": "left",
+        "autoOpenChatIn": "0"
+      },
+      isVoice: false,
+    });
+  });
+</script>
+  <script>
+    // Initialize AOS Animation
+    AOS.init({
+      duration: 800,
+      easing: 'ease',
+      once: true,
+      offset: 100
+    });
+    
+    // Mobile Menu Toggle
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      document.getElementById('navMenu').classList.toggle('active');
+      this.classList.toggle('active');
+      
+      if (this.classList.contains('active')) {
+        this.innerHTML = '<i class="fas fa-times"></i>';
+      } else {
+        this.innerHTML = '<i class="fas fa-bars"></i>';
+      }
+    });
+    
+    // Header Scroll Effect
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      
+      // Progress Bar
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById("progressBar").style.width = scrolled + "%";
+      
+      // Back to Top Button
+      const backToTop = document.querySelector('.back-to-top');
+      if (window.scrollY > 300) {
+        backToTop.classList.add('active');
+      } else {
+        backToTop.classList.remove('active');
+      }
+    });
+    
+    // Smooth Scrolling for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          document.getElementById('navMenu').classList.remove('active');
+          document.getElementById('menuToggle').classList.remove('active');
+          document.getElementById('menuToggle').innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+    });
+    
+    // Initialize Testimonial Slider
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      }
+    });
+    
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item h4').forEach(item => {
+      item.addEventListener('click', function() {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+    
+    // Counter Animation
+    const counters = document.querySelectorAll('.counter-number');
+    const speed = 200;
+    
+    counters.forEach(counter => {
+      const animate = () => {
+        const value = +counter.getAttribute('data-target');
+        const data = +counter.innerText;
+        
+        const time = value / speed;
+        if (data < value) {
+          counter.innerText = Math.ceil(data + time);
+          setTimeout(animate, 1);
+        } else {
+          counter.innerText = value;
+        }
+      }
+      
+      animate();
+    });
+  </script>
+</body>
+</html>
